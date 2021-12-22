@@ -1,1 +1,3 @@
-
+secret:
+  token: '$-AP$4[2]8x6n+W0J'
+  ttl: 3600000 # 1 시간
