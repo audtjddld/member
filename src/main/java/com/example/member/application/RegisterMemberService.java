@@ -6,7 +6,9 @@ import com.example.member.application.port.out.FindMemberPort;
 import com.example.member.application.port.out.PersistMemberPort;
 import com.example.member.application.port.out.model.PersistMemberCommand;
 import com.example.member.domain.entity.Member;
+import com.example.member.domain.util.SHA256;
 import com.example.member.exception.AreadyJoinedMemberException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class RegisterMemberService implements RegisterMemberUseCase {
 
   @Transactional
   @Override
-  public void register(final RegisterMemberCommand command) {
+  public void register(final RegisterMemberCommand command) throws NoSuchAlgorithmException {
     final Member alreadyJoinedMember = findMemberPort.find(command.getEmail());
 
     if (Objects.nonNull(alreadyJoinedMember)) {
@@ -36,7 +38,7 @@ public class RegisterMemberService implements RegisterMemberUseCase {
         .mobile(command.getMobile())
         .name(command.getName())
         .nickname(command.getNickname())
-        .password(command.getPassword())
+        .password(SHA256.encrypt(command.getPassword()))
         .build();
 
     persistMemberPort.save(persistMemberCommand);
