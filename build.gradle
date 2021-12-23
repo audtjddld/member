@@ -22,7 +22,7 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
@@ -31,6 +31,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 test {
@@ -41,4 +42,12 @@ test {
 asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
+}
+
+bootJar {
+    dependsOn asciidoctor
+    from("${asciidoctor.outputDir}/html5") {
+        into 'static/docs'
+    }
+    archiveFileName.set "cloud-application.jar"
 }

@@ -1,0 +1,13 @@
+== 인증번호 검증 요청
+
+=== HTTP Request
+
+include::{snippets}/validations/request-fields.adoc[]
+include::{snippets}/validations/request-body.adoc[]
+
+=== HTTP Response
+
+include::{snippets}/validations/response-body.adoc[]
+
+
+
