@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +48,8 @@ public class JwtManager {
         .setExpiration(expiredTime)
         .setSubject("user-auth")
         .setIssuer(ISSUER)
-        .signWith(SignatureAlgorithm.ES256, secretKey.getBytes(StandardCharsets.UTF_8));
+        .claim("email", audience)
+        .signWith(SignatureAlgorithm.HS256, secretKey);
 
     return builder.compact();
   }
@@ -62,7 +62,7 @@ public class JwtManager {
    */
   public boolean verify(final String jwtToken) {
     final Claims body = Jwts.parser()
-        .setSigningKey(secretKey.getBytes(StandardCharsets.UTF_8))
+        .setSigningKey(secretKey)
         .parseClaimsJws(jwtToken)
         .getBody();
 

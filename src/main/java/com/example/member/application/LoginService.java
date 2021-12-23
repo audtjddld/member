@@ -1,7 +1,9 @@
 package com.example.member.application;
 
+import com.example.member.adapter.in.web.model.LoginResponse;
 import com.example.member.application.port.in.LoginUseCase;
 import com.example.member.application.port.out.FindMemberEmailPasswordPort;
+import com.example.member.config.JwtManager;
 import com.example.member.domain.entity.Member;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.MemberNotFoundException;
@@ -19,6 +21,8 @@ public class LoginService implements LoginUseCase {
 
   private final FindMemberEmailPasswordPort port;
 
+  private final JwtManager jwtManager;
+
   /**
    * 이메일 패스워드를 입력 받아 회원 정보를 조회합니다.
    *
@@ -27,7 +31,7 @@ public class LoginService implements LoginUseCase {
    * @return 토큰 정보
    */
   @Override
-  public String login(final String email, final String password) throws NoSuchAlgorithmException {
+  public LoginResponse login(final String email, final String password) throws NoSuchAlgorithmException {
 
     final Member member = port.findByEmailAndPassword(email, SHA256.encrypt(password));
 
@@ -35,9 +39,8 @@ public class LoginService implements LoginUseCase {
       throw new MemberNotFoundException();
     }
 
-    //TODO jwt 토큰 생성
-
-    return null;
+    final String token = jwtManager.create(email);
+    return new LoginResponse(token);
   }
 
 }
