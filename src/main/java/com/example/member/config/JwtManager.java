@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * token 관리자.
  */
 @Component
-public class JwtManager {
+public class JwtManager implements TokenManager {
 
   @Value("${secret.token}")
   private String secretKey;
@@ -28,10 +28,12 @@ public class JwtManager {
   /**
    * jwt token을 생성합니다.
    *
-   * @param audience 대상자
+   * @param id    회원 아이디
+   * @param email 대상자
    * @return jwt token
    */
-  public String create(final String audience) {
+  @Override
+  public String create(final long id, final String email) {
     final Date expiredTime = new Date();
     expiredTime.setTime(ttl);
 
@@ -43,12 +45,13 @@ public class JwtManager {
     final JwtBuilder builder = Jwts.builder()
         .setHeader(header)
         .setIssuer(ISSUER)
-        .setAudience(audience)
+        .setAudience(email)
         .setIssuedAt(new Date())
         .setExpiration(expiredTime)
         .setSubject("user-auth")
         .setIssuer(ISSUER)
-        .claim("email", audience)
+        .claim("id", id)
+        .claim("email", email)
         .signWith(SignatureAlgorithm.HS256, secretKey);
 
     return builder.compact();

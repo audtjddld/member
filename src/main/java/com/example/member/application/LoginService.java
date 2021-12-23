@@ -3,7 +3,7 @@ package com.example.member.application;
 import com.example.member.adapter.in.web.model.LoginResponse;
 import com.example.member.application.port.in.LoginUseCase;
 import com.example.member.application.port.out.FindMemberEmailPasswordPort;
-import com.example.member.config.JwtManager;
+import com.example.member.config.TokenManager;
 import com.example.member.domain.entity.Member;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.MemberNotFoundException;
@@ -21,7 +21,7 @@ public class LoginService implements LoginUseCase {
 
   private final FindMemberEmailPasswordPort port;
 
-  private final JwtManager jwtManager;
+  private final TokenManager jwtManager;
 
   /**
    * 이메일 패스워드를 입력 받아 회원 정보를 조회합니다.
@@ -39,7 +39,7 @@ public class LoginService implements LoginUseCase {
       throw new MemberNotFoundException();
     }
 
-    final String token = jwtManager.create(email);
+    final String token = jwtManager.create(member.getId(), member.getEmail());
     return new LoginResponse(token);
   }
 
