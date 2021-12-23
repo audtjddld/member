@@ -16,7 +16,7 @@ public class ValidateAuthenticationNumberRequest {
 
   @NotNull
   @NotEmpty
-  @Size(max = 6)
+  @Size(max = 6, min = 6)
   private String authenticationNumber;
 
   @NotNull
