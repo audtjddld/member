@@ -17,11 +17,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtManager implements TokenManager {
 
-  @Value("${secret.token}")
-  private String secretKey;
 
-  @Value("${secret.ttl}")
-  private Long ttl;
+  private final String secretKey;
+
+  private final Long ttl;
+
+  public JwtManager(@Value("${secret.token}") final String secretKey,
+                    @Value("${secret.ttl}") final Long ttl) {
+    this.secretKey = secretKey;
+    this.ttl = ttl;
+  }
 
   private static final String ISSUER = "my-member-api-service";
 
@@ -34,25 +39,23 @@ public class JwtManager implements TokenManager {
    */
   @Override
   public String create(final long id, final String email) {
-    final Date expiredTime = new Date();
-    expiredTime.setTime(ttl);
+    final Date now = new Date();
+    final Date expiredTime = new Date(now.getTime() + ttl);
 
     final Map<String, Object> header = new HashMap<>();
     header.put("typ", "JWT");
     header.put("alg", "HS256");
-
-
+    
     final JwtBuilder builder = Jwts.builder()
         .setHeader(header)
         .setIssuer(ISSUER)
-        .setAudience(email)
-        .setIssuedAt(new Date())
+        .setIssuedAt(now)
         .setExpiration(expiredTime)
         .setSubject("user-auth")
         .setIssuer(ISSUER)
         .claim("id", id)
         .claim("email", email)
-        .signWith(SignatureAlgorithm.HS256, secretKey);
+        .signWith(SignatureAlgorithm.HS256, secretKey.getBytes());
 
     return builder.compact();
   }
@@ -65,7 +68,7 @@ public class JwtManager implements TokenManager {
    */
   public boolean verify(final String jwtToken) {
     final Claims body = Jwts.parser()
-        .setSigningKey(secretKey)
+        .setSigningKey(secretKey.getBytes())
         .parseClaimsJws(jwtToken)
         .getBody();
 
