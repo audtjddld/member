@@ -1,5 +1,7 @@
 package com.example.member.config;
 
+import io.jsonwebtoken.Claims;
+
 /**
  * 토큰 매니저.
  */
@@ -20,6 +22,6 @@ public interface TokenManager {
    * @param jwtToken 인증토큰
    * @return 유효하면 true, 나머지 false
    */
-  boolean verify(final String jwtToken);
+  Claims verify(final String jwtToken);
 
 }

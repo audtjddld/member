@@ -1,5 +1,6 @@
 package com.example.member.config;
 
+import io.jsonwebtoken.Claims;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +12,8 @@ class JwtManagerTest {
   @Test
   public void test1() {
     final String token = tokenManager.create(1L, "abc@abc.com");
-    final boolean verify = tokenManager.verify(token);
-    Assertions.assertTrue(verify);
+    final Claims verify = tokenManager.verify(token);
+    Assertions.assertTrue(!verify.isEmpty());
   }
 
 }

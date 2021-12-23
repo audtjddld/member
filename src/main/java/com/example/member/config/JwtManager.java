@@ -45,7 +45,7 @@ public class JwtManager implements TokenManager {
     final Map<String, Object> header = new HashMap<>();
     header.put("typ", "JWT");
     header.put("alg", "HS256");
-    
+
     final JwtBuilder builder = Jwts.builder()
         .setHeader(header)
         .setIssuer(ISSUER)
@@ -66,7 +66,7 @@ public class JwtManager implements TokenManager {
    * @param jwtToken jwt token
    * @return 유효한 토큰 true, 나머지 false
    */
-  public boolean verify(final String jwtToken) {
+  public Claims verify(final String jwtToken) {
     final Claims body = Jwts.parser()
         .setSigningKey(secretKey.getBytes())
         .parseClaimsJws(jwtToken)
@@ -76,7 +76,7 @@ public class JwtManager implements TokenManager {
       throw new ExpiredTokenException();
     }
 
-    return !body.isEmpty();
+    return body;
   }
 
 }
