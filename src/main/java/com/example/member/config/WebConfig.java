@@ -21,7 +21,8 @@ public class WebConfig implements WebMvcConfigurer {
         .addPathPatterns("/profile", "/changePassword/*")
         .excludePathPatterns("/validations")
         .excludePathPatterns("/authentications")
-        .excludePathPatterns("/login/*");
+        .excludePathPatterns("/login/*")
+        .excludePathPatterns("/members");
   }
 
 }

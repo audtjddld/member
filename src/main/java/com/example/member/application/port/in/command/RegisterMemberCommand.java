@@ -1,5 +1,6 @@
 package com.example.member.application.port.in.command;
 
+import lombok.Builder;
 import lombok.Getter;
 
 /**
@@ -23,6 +24,7 @@ public class RegisterMemberCommand {
    * @param name     성명
    * @param mobile   전화번호
    */
+  @Builder
   public RegisterMemberCommand(final String email,
                                final String nickname,
                                final String password,
