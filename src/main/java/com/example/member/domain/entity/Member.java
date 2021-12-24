@@ -84,4 +84,8 @@ public class Member {
 
   }
 
+  public void updatePassword(final String password) {
+    this.password = password;
+  }
+
 }
