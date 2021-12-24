@@ -1,0 +1,62 @@
+## 인증번호 발송
+POST http://localhost:8080/authentications
+Accept: application/json
+Content-Type: application/json
+
+{
+  "mobile": "010-1234-5678"
+}
+
+### 인증번호 검증
+POST http://localhost:8080/validations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "authenticationNumber" : "918050",
+  "mobile": "010-1234-5678"
+}
+
+### 회원 가입
+
+POST http://localhost:8080/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "abc@abc.com",
+  "nickname": "가물치",
+  "password": "1234",
+  "name": "홍길동",
+  "mobile": "010-1234-5678"
+}
+
+### 로그인
+
+POST http://localhost:8080/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "abc@abc.com",
+  "password": "1234"
+}
+
+
+### 프로파일 조회
+GET http://localhost:8080/profile/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJteS1tZW1iZXItYXBpLXNlcnZpY2UiLCJpYXQiOjE2NDAzNTI5MTUsImV4cCI6MTY0MDM1NjUxNSwic3ViIjoidXNlci1hdXRoIiwiaWQiOjEsImVtYWlsIjoiYWJjQGFiYy5jb20ifQ.7ry_KC4jpfVQT_VSApMPRQtRTFGj2tA9_f_uI6ByO5w
+Accept: application/json
+Content-Type: application/json
+
+### 패스워드 재설정
+
+PUT http://localhost:8080/users
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 1,
+  "password": "12345",
+  "confirmPassword": "12345"
+}
