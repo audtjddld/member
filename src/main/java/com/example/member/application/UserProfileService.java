@@ -4,7 +4,7 @@ import com.example.member.application.port.in.UserProfileUseCase;
 import com.example.member.application.port.in.command.UserProfileCommand;
 import com.example.member.application.port.in.command.UserProfileResponse;
 import com.example.member.domain.entity.User;
-import com.example.member.domain.repository.MemberRepository;
+import com.example.member.domain.repository.UserRepository;
 import com.example.member.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserProfileService implements UserProfileUseCase {
 
-  private final MemberRepository repository;
+  private final UserRepository repository;
 
   @Transactional(readOnly = true)
   @Override

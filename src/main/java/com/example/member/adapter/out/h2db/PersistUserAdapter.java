@@ -4,7 +4,7 @@ import com.example.member.application.port.out.PersistUserPort;
 import com.example.member.application.port.out.model.PersistMemberCommand;
 import com.example.member.common.Adapter;
 import com.example.member.domain.entity.User;
-import com.example.member.domain.repository.MemberRepository;
+import com.example.member.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Adapter
 public class PersistUserAdapter implements PersistUserPort {
 
-  private final MemberRepository repository;
+  private final UserRepository repository;
 
   @Transactional
   @Override

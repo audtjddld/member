@@ -6,7 +6,7 @@ import com.example.member.domain.entity.User;
  * 회원 정보 조회 Port
  * email과 password를 이용해서 조회합니다.
  */
-public interface FindMemberEmailPasswordPort {
+public interface FindUserEmailPasswordPort {
 
   /**
    * 이메일과 패스워드를 입력받아 회원을 조회합니다.

@@ -1,9 +1,9 @@
 package com.example.member.adapter.out.h2db;
 
-import com.example.member.application.port.out.FindMemberEmailPasswordPort;
+import com.example.member.application.port.out.FindUserEmailPasswordPort;
 import com.example.member.common.Adapter;
 import com.example.member.domain.entity.User;
-import com.example.member.domain.repository.MemberRepository;
+import com.example.member.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RequiredArgsConstructor
 @Adapter
-public class FindMemberEmailPasswordAdapter implements FindMemberEmailPasswordPort {
+public class FindUserEmailPasswordAdapter implements FindUserEmailPasswordPort {
 
-  private final MemberRepository repository;
+  private final UserRepository repository;
 
   @Transactional(readOnly = true)
   @Override

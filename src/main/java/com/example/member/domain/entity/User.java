@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-@Entity(name = "member")
+@Entity(name = "user")
 public class User {
 
   /**

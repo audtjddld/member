@@ -2,7 +2,7 @@ package com.example.member.application;
 
 import com.example.member.adapter.in.web.model.LoginResponse;
 import com.example.member.application.port.in.LoginUseCase;
-import com.example.member.application.port.out.FindMemberEmailPasswordPort;
+import com.example.member.application.port.out.FindUserEmailPasswordPort;
 import com.example.member.config.TokenManager;
 import com.example.member.domain.entity.User;
 import com.example.member.domain.util.SHA256;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService implements LoginUseCase {
 
-  private final FindMemberEmailPasswordPort port;
+  private final FindUserEmailPasswordPort port;
 
   private final TokenManager jwtManager;
 

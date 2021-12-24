@@ -3,7 +3,7 @@ package com.example.member.application;
 import com.example.member.application.port.in.ChangePasswordUseCase;
 import com.example.member.application.port.in.command.ChangePasswordCommand;
 import com.example.member.domain.entity.User;
-import com.example.member.domain.repository.MemberRepository;
+import com.example.member.domain.repository.UserRepository;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.MemberNotFoundException;
 import java.security.NoSuchAlgorithmException;
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ChangePasswordService implements ChangePasswordUseCase {
 
-  private final MemberRepository repository;
+  private final UserRepository repository;
 
   @Transactional
   @Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * 회원 Repository.
  */
 @Repository
-public interface MemberRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
   /**
    * 이메일로 가입된 회원이 있는지 조회합니다.
