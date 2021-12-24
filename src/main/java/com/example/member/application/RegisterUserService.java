@@ -1,11 +1,11 @@
 package com.example.member.application;
 
-import com.example.member.application.port.in.RegisterMemberUseCase;
+import com.example.member.application.port.in.RegisterUserUseCase;
 import com.example.member.application.port.in.command.RegisterMemberCommand;
-import com.example.member.application.port.out.FindMemberPort;
-import com.example.member.application.port.out.PersistMemberPort;
+import com.example.member.application.port.out.FindUserPort;
+import com.example.member.application.port.out.PersistUserPort;
 import com.example.member.application.port.out.model.PersistMemberCommand;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.AreadyJoinedMemberException;
 import java.security.NoSuchAlgorithmException;
@@ -19,17 +19,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RequiredArgsConstructor
 @Service
-public class RegisterMemberService implements RegisterMemberUseCase {
+public class RegisterUserService implements RegisterUserUseCase {
 
-  private final PersistMemberPort persistMemberPort;
-  private final FindMemberPort findMemberPort;
+  private final PersistUserPort persistUserPort;
+  private final FindUserPort findUserPort;
 
   @Transactional
   @Override
   public void register(final RegisterMemberCommand command) throws NoSuchAlgorithmException {
-    final Member alreadyJoinedMember = findMemberPort.find(command.getEmail());
+    final User alreadyJoinedUser = findUserPort.find(command.getEmail());
 
-    if (Objects.nonNull(alreadyJoinedMember)) {
+    if (Objects.nonNull(alreadyJoinedUser)) {
       throw new AreadyJoinedMemberException();
     }
 
@@ -41,7 +41,7 @@ public class RegisterMemberService implements RegisterMemberUseCase {
         .password(SHA256.encrypt(command.getPassword()))
         .build();
 
-    persistMemberPort.save(persistMemberCommand);
+    persistUserPort.save(persistMemberCommand);
 
   }
 

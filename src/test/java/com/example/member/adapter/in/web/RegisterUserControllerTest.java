@@ -5,7 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.member.application.port.in.RegisterMemberUseCase;
+import com.example.member.application.port.in.RegisterUserUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -20,17 +20,17 @@ import org.springframework.web.context.WebApplicationContext;
 
 @DisplayName("RegisterMemberController 클래스")
 @SpringBootTest
-public class RegisterMemberControllerTest {
+public class RegisterUserControllerTest {
 
   @Autowired
   private WebApplicationContext webApplicationContext;
 
   private MockMvc mockMvc;
 
-  private static final String URL = "/members";
+  private static final String URL = "/users";
 
   @MockBean
-  private RegisterMemberUseCase useCase;
+  private RegisterUserUseCase useCase;
 
   public void init() {
     useCase = command -> {

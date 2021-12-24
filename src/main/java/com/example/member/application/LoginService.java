@@ -4,7 +4,7 @@ import com.example.member.adapter.in.web.model.LoginResponse;
 import com.example.member.application.port.in.LoginUseCase;
 import com.example.member.application.port.out.FindMemberEmailPasswordPort;
 import com.example.member.config.TokenManager;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.MemberNotFoundException;
 import java.security.NoSuchAlgorithmException;
@@ -33,13 +33,13 @@ public class LoginService implements LoginUseCase {
   @Override
   public LoginResponse login(final String email, final String password) throws NoSuchAlgorithmException {
 
-    final Member member = port.findByEmailAndPassword(email, SHA256.encrypt(password));
+    final User user = port.findByEmailAndPassword(email, SHA256.encrypt(password));
 
-    if (Objects.isNull(member)) {
+    if (Objects.isNull(user)) {
       throw new MemberNotFoundException();
     }
 
-    final String token = jwtManager.create(member.getId(), member.getEmail());
+    final String token = jwtManager.create(user.getId(), user.getEmail());
     return new LoginResponse(token);
   }
 

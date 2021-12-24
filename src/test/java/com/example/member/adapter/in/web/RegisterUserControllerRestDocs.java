@@ -11,7 +11,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWit
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.member.application.port.in.RegisterMemberUseCase;
+import com.example.member.application.port.in.RegisterUserUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -29,10 +29,10 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @ExtendWith(RestDocumentationExtension.class)
 @DisplayName("RegisterMemberController 클래스")
-class RegisterMemberControllerRestDocs {
+class RegisterUserControllerRestDocs {
 
   @MockBean
-  private RegisterMemberUseCase useCase;
+  private RegisterUserUseCase useCase;
 
   @Autowired
   private WebApplicationContext webApplicationContext;
@@ -54,11 +54,11 @@ class RegisterMemberControllerRestDocs {
   @DisplayName("회원 가입을 요청 합니다")
   public void authenticationApiTest() throws Exception {
     mockMvc.perform(
-            post("/members")
+            post("/users")
                 .contentType(APPLICATION_JSON)
                 .content(getString("회원가입.json"))
         ).andExpect(status().isCreated())
-        .andDo(document("member-join",
+        .andDo(document("user-join",
             getDocumentRequest(),
             getDocumentResponse(),
             requestFields(

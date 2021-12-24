@@ -1,0 +1,11 @@
+== 프로파일
+
+=== HTTP Request
+
+include::{snippets}/user-profile/request-fields.adoc[]
+include::{snippets}/user-profile/request-body.adoc[]
+
+=== HTTP Response
+
+include::{snippets}/user-profile/response-body.adoc[]
+

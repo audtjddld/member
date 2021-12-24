@@ -2,7 +2,7 @@ package com.example.member.application;
 
 import com.example.member.application.port.in.ChangePasswordUseCase;
 import com.example.member.application.port.in.command.ChangePasswordCommand;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.repository.MemberRepository;
 import com.example.member.domain.util.SHA256;
 import com.example.member.exception.MemberNotFoundException;
@@ -23,10 +23,10 @@ public class ChangePasswordService implements ChangePasswordUseCase {
   @Transactional
   @Override
   public void change(final ChangePasswordCommand command) throws NoSuchAlgorithmException {
-    final Member member = repository.findById(command.getId())
+    final User user = repository.findById(command.getId())
         .orElseThrow(MemberNotFoundException::new);
 
-    member.updatePassword(SHA256.encrypt(command.getPassword()));
+    user.updatePassword(SHA256.encrypt(command.getPassword()));
   }
 
 }

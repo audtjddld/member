@@ -1,9 +1,9 @@
 package com.example.member.adapter.out.h2db;
 
-import com.example.member.application.port.out.PersistMemberPort;
+import com.example.member.application.port.out.PersistUserPort;
 import com.example.member.application.port.out.model.PersistMemberCommand;
 import com.example.member.common.Adapter;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,15 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RequiredArgsConstructor
 @Adapter
-public class PersistMemberAdapter implements PersistMemberPort {
+public class PersistUserAdapter implements PersistUserPort {
 
   private final MemberRepository repository;
 
   @Transactional
   @Override
-  public Member save(final PersistMemberCommand command) {
+  public User save(final PersistMemberCommand command) {
 
-    final Member member = Member.builder()
+    final User user = User.builder()
         .password(command.getPassword())
         .name(command.getName())
         .nickname(command.getNickname())
@@ -29,7 +29,7 @@ public class PersistMemberAdapter implements PersistMemberPort {
         .email(command.getEmail())
         .build();
 
-    return repository.save(member);
+    return repository.save(user);
   }
 
 }

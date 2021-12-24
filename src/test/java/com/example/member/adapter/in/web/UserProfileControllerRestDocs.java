@@ -81,7 +81,7 @@ class UserProfileControllerRestDocs {
                 .contentType(APPLICATION_JSON)
                 .header("Authorization", "Bearer " + TOKEN)
         ).andExpect(status().isOk())
-        .andDo(document("member-profile",
+        .andDo(document("user-profile",
             getDocumentRequest(),
             getDocumentResponse(),
             responseFields(

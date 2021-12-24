@@ -3,7 +3,7 @@ package com.example.member.application;
 import com.example.member.application.port.in.UserProfileUseCase;
 import com.example.member.application.port.in.command.UserProfileCommand;
 import com.example.member.application.port.in.command.UserProfileResponse;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.repository.MemberRepository;
 import com.example.member.exception.MemberNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +22,14 @@ public class UserProfileService implements UserProfileUseCase {
   @Transactional(readOnly = true)
   @Override
   public UserProfileResponse profile(final UserProfileCommand command) {
-    final Member member = repository.findById(command.getId())
+    final User user = repository.findById(command.getId())
         .orElseThrow(MemberNotFoundException::new);
 
     return UserProfileResponse.builder()
-        .email(member.getEmail())
-        .mobile(member.getMobile())
-        .name(member.getName())
-        .nickname(member.getNickname())
+        .email(user.getEmail())
+        .mobile(user.getMobile())
+        .name(user.getName())
+        .nickname(user.getNickname())
         .build();
   }
 

@@ -1,7 +1,7 @@
 package com.example.member.adapter.in.web;
 
 import com.example.member.adapter.in.web.model.RegisterMemberRequest;
-import com.example.member.application.port.in.RegisterMemberUseCase;
+import com.example.member.application.port.in.RegisterUserUseCase;
 import com.example.member.application.port.in.command.RegisterMemberCommand;
 import com.example.member.exception.BadRequestException;
 import javax.validation.Valid;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
  * 회원 가입 Controller.
  */
 @RequiredArgsConstructor
-@RequestMapping(path = "members")
+@RequestMapping(path = "users")
 @RestController
-public class RegisterMemberController {
+public class RegisterUserController {
 
-  private final RegisterMemberUseCase useCase;
+  private final RegisterUserUseCase useCase;
 
   @SneakyThrows
   @PostMapping

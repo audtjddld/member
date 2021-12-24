@@ -11,7 +11,7 @@ import lombok.Getter;
 
 @Getter
 @Entity(name = "member")
-public class Member {
+public class User {
 
   /**
    * 회원 아이디.
@@ -67,11 +67,11 @@ public class Member {
    * @param mobile   전화번호
    */
   @Builder
-  public Member(final String email,
-                final String nickname,
-                final String password,
-                final String name,
-                final String mobile) {
+  public User(final String email,
+              final String nickname,
+              final String password,
+              final String name,
+              final String mobile) {
     this.email = email;
     this.nickname = nickname;
     this.password = password;
@@ -80,7 +80,7 @@ public class Member {
     this.registeredAt = LocalDateTime.now();
   }
 
-  protected Member() {
+  protected User() {
 
   }
 

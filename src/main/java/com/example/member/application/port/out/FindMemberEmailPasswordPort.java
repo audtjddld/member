@@ -1,6 +1,6 @@
 package com.example.member.application.port.out;
 
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 
 /**
  * 회원 정보 조회 Port
@@ -15,6 +15,6 @@ public interface FindMemberEmailPasswordPort {
    * @param password 패스워드
    * @return 정보가 일치하면 회원 정보, 없으면 null
    */
-  Member findByEmailAndPassword(String email, String password);
+  User findByEmailAndPassword(String email, String password);
 
 }

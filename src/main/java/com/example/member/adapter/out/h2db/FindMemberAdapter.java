@@ -1,8 +1,8 @@
 package com.example.member.adapter.out.h2db;
 
-import com.example.member.application.port.out.FindMemberPort;
+import com.example.member.application.port.out.FindUserPort;
 import com.example.member.common.Adapter;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -11,12 +11,12 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 @Adapter
-public class FindMemberAdapter implements FindMemberPort {
+public class FindMemberAdapter implements FindUserPort {
 
   private final MemberRepository repository;
 
   @Override
-  public Member find(final String email) {
+  public User find(final String email) {
     return repository.findByEmail(email);
   }
 

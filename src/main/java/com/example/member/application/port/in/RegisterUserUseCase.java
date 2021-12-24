@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 회원 가입 UseCase.
  */
-public interface RegisterMemberUseCase {
+public interface RegisterUserUseCase {
 
   /**
    * 회원 정보를 저장합니다.

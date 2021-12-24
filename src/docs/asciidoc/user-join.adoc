@@ -1,0 +1,9 @@
+== 회원가입
+
+=== HTTP Request
+
+include::{snippets}/user-join/request-fields.adoc[]
+include::{snippets}/user-join/request-body.adoc[]
+
+
+

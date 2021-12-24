@@ -2,7 +2,7 @@ package com.example.member.adapter.out.h2db;
 
 import com.example.member.application.port.out.FindMemberEmailPasswordPort;
 import com.example.member.common.Adapter;
-import com.example.member.domain.entity.Member;
+import com.example.member.domain.entity.User;
 import com.example.member.domain.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,7 @@ public class FindMemberEmailPasswordAdapter implements FindMemberEmailPasswordPo
 
   @Transactional(readOnly = true)
   @Override
-  public Member findByEmailAndPassword(final String email, final String password) {
+  public User findByEmailAndPassword(final String email, final String password) {
     return repository.findByEmailAndPassword(email, password);
   }
 
