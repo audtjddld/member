@@ -12,6 +12,11 @@
 
 > java -jar ./build/libs/cloud-application.jar
 
+## 코드 구현 관련 사항
+
+> 헥사고날 아키텍처 형태로 코드를 작성하였고, 최대한 작은 단위로 작성하고, 구현체에 의존하지 않는 코드로 작성하였습니다. 테스트는 RestDocs를 이용해서 테스트 및
+> 스펙 문서를 작성하였고, 검증(Validation) 로직은 별도로 테스트로 확인하였습니다.
+
 # API 명세
 
 > http://localhost:8080/docs/index.html
