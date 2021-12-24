@@ -11,13 +11,12 @@ import lombok.Data;
 public class ChangePasswordRequest {
 
   @NotNull
-  @NotEmpty
   private Long id;
 
   @NotNull
   @NotEmpty
   private String password;
-  
+
   @NotNull
   @NotEmpty
   private String confirmPassword;
