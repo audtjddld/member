@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Adapter
 public class FindAuthenticationMobileAdapter implements FindAuthenticationMobilePort {
 
-  private AuthenticationMobileRepository repository;
+  private final AuthenticationMobileRepository repository;
 
   @Transactional(readOnly = true)
   @Override

@@ -1,6 +1,7 @@
 package com.example.member.config.interceptor;
 
 import com.example.member.config.JwtManager;
+import com.example.member.exception.NotPermimtException;
 import io.jsonwebtoken.Claims;
 import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +39,12 @@ public class AuthorizationInterceptor implements AsyncHandlerInterceptor {
 
     final long id = Long.parseLong(verify.get("id").toString());
     log.info("claims userId: {}", id);
-    return id == userId;
+
+    if (id != userId) {
+      throw new NotPermimtException();
+    }
+
+    return true;
   }
 
   public String extract(final HttpServletRequest request, final String type) {

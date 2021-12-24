@@ -1,7 +1,9 @@
 package com.example.member.adapter.in.web;
 
+import com.example.member.exception.AreadyJoinedMemberException;
 import com.example.member.exception.BadRequestException;
 import com.example.member.exception.BusinessException;
+import com.example.member.exception.ExpiredTokenException;
 import com.example.member.exception.MemberNotFoundException;
 import com.example.member.exception.NotPermimtException;
 import org.springframework.http.HttpStatus;
@@ -21,7 +23,10 @@ public class ControllerAdvices {
    * @param be BusinessException
    * @return http Status 400, 메시지
    */
-  @ExceptionHandler(value = {BadRequestException.class, NotPermimtException.class})
+  @ExceptionHandler(value = {BadRequestException.class,
+      NotPermimtException.class,
+      AreadyJoinedMemberException.class,
+      ExpiredTokenException.class})
   public ResponseEntity<String> badRequest(final BusinessException be) {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(be.getMessage());
   }
