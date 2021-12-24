@@ -2,6 +2,7 @@ package com.example.member.adapter.in.web;
 
 import com.example.member.exception.BadRequestException;
 import com.example.member.exception.BusinessException;
+import com.example.member.exception.MemberNotFoundException;
 import com.example.member.exception.NotPermimtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,18 @@ public class ControllerAdvices {
   @ExceptionHandler(value = {BadRequestException.class, NotPermimtException.class})
   public ResponseEntity<String> badRequest(final BusinessException be) {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(be.getMessage());
+  }
+
+
+  /**
+   * 404 오류 Exception handler
+   *
+   * @param be MemberNotFoundException
+   * @return http status 404, 메시지
+   */
+  @ExceptionHandler(value = MemberNotFoundException.class)
+  public ResponseEntity<String> notFoundRequest(final BusinessException be) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(be.getMessage());
   }
 
 }
