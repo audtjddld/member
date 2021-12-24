@@ -10,6 +10,8 @@ import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.docu
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.member.application.port.in.UserProfileUseCase;
@@ -84,6 +86,10 @@ class UserProfileControllerRestDocs {
         .andDo(document("user-profile",
             getDocumentRequest(),
             getDocumentResponse(),
+            pathParameters(
+                parameterWithName("id")
+                    .description("아이디")
+            ),
             responseFields(
                 fieldWithPath("email")
                     .type(JsonFieldType.STRING)

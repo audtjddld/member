@@ -2,10 +2,15 @@
 
 === HTTP Request
 
+include::{snippets}/authentications/http-request.adoc[]
+
 include::{snippets}/authentications/request-fields.adoc[]
 include::{snippets}/authentications/request-body.adoc[]
 
 === HTTP Response
+
+include::{snippets}/authentications/response-fields.adoc[]
+
 
 include::{snippets}/authentications/response-body.adoc[]
 

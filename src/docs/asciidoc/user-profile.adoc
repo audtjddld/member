@@ -4,7 +4,11 @@
 
 include::{snippets}/user-profile/http-request.adoc[]
 
+include::{snippets}/user-profile/request-fields.adoc[]
+
 === HTTP Response
+
+include::{snippets}/user-profile/response-fields.adoc[]
 
 include::{snippets}/user-profile/response-body.adoc[]
 
