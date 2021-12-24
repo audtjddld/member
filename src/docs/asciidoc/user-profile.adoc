@@ -2,8 +2,7 @@
 
 === HTTP Request
 
-include::{snippets}/user-profile/request-fields.adoc[]
-include::{snippets}/user-profile/request-body.adoc[]
+include::{snippets}/user-profile/http-request.adoc[]
 
 === HTTP Response
 

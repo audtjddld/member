@@ -52,7 +52,7 @@ public class LoginControllerRestDocs {
     this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
         .apply(documentationConfiguration(restDocumentation))
         .build();
-    
+
     init();
   }
 
@@ -70,7 +70,7 @@ public class LoginControllerRestDocs {
                 .contentType(APPLICATION_JSON)
                 .content(getString("로그인.json"))
         ).andExpect(status().isOk())
-        .andDo(document("member-login",
+        .andDo(document("user-login",
             getDocumentRequest(),
             getDocumentResponse(),
             responseFields(

@@ -15,3 +15,6 @@
 
 include::authentications.adoc[]
 include::validations.adoc[]
+include::user-join.adoc[]
+include::user-login.adoc[]
+include::user-profile.adoc[]

@@ -2,7 +2,10 @@
 
 === HTTP Request
 
+include::{snippets}/user-join/http-request.adoc[]
+
 include::{snippets}/user-join/request-fields.adoc[]
+
 include::{snippets}/user-join/request-body.adoc[]
 
 
